@@ -355,14 +355,14 @@
 	};
 
 	uart1_pins_a: uart1_pins@0 {  /* For EVB1 board */
-		pins = "PG6", "PG7";
+		pins = "PG6", "PG7", "PG8", "PG9";
 		function = "uart1";
 		drive-strength = <10>;
 		bias-pull-up;
 	};
 
 	uart1_pins_b: uart1_pins {  /* For EVB1 board */
-		pins = "PG6", "PG7";
+		pins = "PG6", "PG7", "PG8", "PG9";
 		function = "gpio_in";
 	};
 
@@ -748,12 +748,11 @@
 	pinctrl-1 = <&uart0_pins_b>;
 	status = "disabled";
 };
-
 &uart1 {
 	pinctrl-names = "default", "sleep";
 	pinctrl-0 = <&uart1_pins_a>;
 	pinctrl-1 = <&uart1_pins_b>;
-	status = "disabled";
+	status = "okay";
 };
 
 &uart2 {
@@ -1139,9 +1138,9 @@
 	btlpm: btlpm@0 {
 		compatible  = "allwinner,sunxi-btlpm";
 		uart_index  = <0x1>;
-		bt_wake     = <&pio PB 5 GPIO_ACTIVE_HIGH>;
-		bt_hostwake = <&pio PB 4 GPIO_ACTIVE_HIGH>;
-		status      = "disabled";
+		bt_wake     = <&pio PG 13 GPIO_ACTIVE_HIGH>;
+		bt_hostwake = <&pio PG 14 GPIO_ACTIVE_HIGH>;
+		status      = "okay";
 	};
 };
 
