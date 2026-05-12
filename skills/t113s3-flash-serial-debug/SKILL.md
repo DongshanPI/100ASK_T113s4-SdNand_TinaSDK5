@@ -22,6 +22,7 @@ description: "Standardizes T113S3 serial connection and firmware flashing workfl
 ## 前置条件
 
 - 工作目录：`/home/ubuntu/T113-tina5v1.2-sdk`
+- OpenixCLI 路径：`tools/OpenixCLI/target/release/openixcli`（相对 SDK 根目录）
 - 串口设备（常见）：
   - 调试串口：`1a86:55d4` -> `/dev/ttyACM0`
   - 烧录口：`1f3a:efe8` (FEL/FES)
@@ -32,9 +33,9 @@ description: "Standardizes T113S3 serial connection and firmware flashing workfl
 ### 1) 检查设备在位
 
 ```bash
-cd /home/ubuntu/T113-tina5v1.2-sdk/tools/OpenixCLI
+cd /home/ubuntu/T113-tina5v1.2-sdk
 lsusb
-sudo ./target/release/openixcli scan -l
+sudo tools/OpenixCLI/target/release/openixcli scan -l
 ```
 
 判定标准：
@@ -58,8 +59,8 @@ sudo python3 trae_serial_terminal.py terminal-raw \
 ### 3) 执行烧录（主终端）
 
 ```bash
-cd /home/ubuntu/T113-tina5v1.2-sdk/tools/OpenixCLI
-sudo ./target/release/openixcli flash /home/ubuntu/T113-tina5v1.2-sdk/out/t113_s4_linux_100ask_uart0.img \
+cd /home/ubuntu/T113-tina5v1.2-sdk
+sudo tools/OpenixCLI/target/release/openixcli flash /home/ubuntu/T113-tina5v1.2-sdk/out/t113_s4_linux_100ask_uart0.img \
   --reconnect-timeout-sec 240 \
   --reconnect-interval-ms 300 \
   -v
@@ -76,7 +77,7 @@ sudo ./target/release/openixcli flash /home/ubuntu/T113-tina5v1.2-sdk/out/t113_s
 - 先看串口是否已进入 `run usb efex`
 - 检查 VM 透传稳定性（`dmesg | tail -n 80` 看 `1f3a:efe8` 是否频繁断连）
 - 重新执行：
-  - `sudo ./target/release/openixcli scan -l`
+  - `sudo tools/OpenixCLI/target/release/openixcli scan -l`
   - 再次 `flash ... --reconnect-timeout-sec 240 --reconnect-interval-ms 300 -v`
 
 ### B. 串口停在 `=>`（U-Boot 提示符）

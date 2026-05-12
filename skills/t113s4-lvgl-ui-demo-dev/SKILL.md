@@ -79,8 +79,8 @@ file "$TMP/src/lv_hello_t113s4"
 
 ```bash
 HOME=/tmp/adbhome adb shell 'reboot efex'
-cd tools/OpenixCLI
-sudo ./target/release/openixcli scan -l
+cd /home/ubuntu/T113-tina5v1.2-sdk
+sudo tools/OpenixCLI/target/release/openixcli scan -l
 ```
 
 期望看到 `Mode: FEL`。
@@ -88,7 +88,7 @@ sudo ./target/release/openixcli scan -l
 ### 4.2 烧写镜像
 
 ```bash
-sudo ./target/release/openixcli flash /home/ubuntu/T113-tina5v1.2-sdk/out/t113_s4_linux_100ask_uart0.img \
+sudo tools/OpenixCLI/target/release/openixcli flash /home/ubuntu/T113-tina5v1.2-sdk/out/t113_s4_linux_100ask_uart0.img \
   --reconnect-timeout-sec 240 \
   --reconnect-interval-ms 300 \
   -v

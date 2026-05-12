@@ -112,8 +112,8 @@ sudo python3 trae_serial_terminal.py io --auto-select --vid 1a86 --pid 55d4 --ba
 ```
 
 ```bash
-cd /home/ubuntu/T113-tina5v1.2-sdk/tools/OpenixCLI
-sudo ./target/release/openixcli flash /home/ubuntu/T113-tina5v1.2-sdk/out/t113_s4_linux_100ask_uart0.img \
+cd /home/ubuntu/T113-tina5v1.2-sdk
+sudo tools/OpenixCLI/target/release/openixcli flash /home/ubuntu/T113-tina5v1.2-sdk/out/t113_s4_linux_100ask_uart0.img \
   --reconnect-timeout-sec 240 \
   --reconnect-interval-ms 300 \
   -v

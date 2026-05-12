@@ -20,6 +20,7 @@ description: "Builds T113_S4 Linux SDK, packs t113_s4_linux_100ask_uart0.img, fl
 - 固件镜像：`out/t113_s4_linux_100ask_uart0.img`
 - 烧录结果：OpenixCLI 正常完成
 - 启动结果：串口进入 Linux shell，`uname -a` 可执行
+- OpenixCLI 路径：`tools/OpenixCLI/target/release/openixcli`（相对 SDK 根目录）
 
 ## 基础环境准备（首次机器）
 
@@ -99,9 +100,9 @@ ls -lh t113_s4_linux_100ask_uart0.img
 ### 6) 烧录前检查设备
 
 ```bash
-cd /home/ubuntu/T113-tina5v1.2-sdk/tools/OpenixCLI
+cd /home/ubuntu/T113-tina5v1.2-sdk
 lsusb
-sudo ./target/release/openixcli scan -l
+sudo tools/OpenixCLI/target/release/openixcli scan -l
 ```
 
 期望看到烧录设备：`1f3a:efe8`（FEL/FES）。
@@ -133,8 +134,8 @@ sudo python3 trae_serial_terminal.py terminal-raw \
 ### 8) 执行烧录
 
 ```bash
-cd /home/ubuntu/T113-tina5v1.2-sdk/tools/OpenixCLI
-sudo ./target/release/openixcli flash /home/ubuntu/T113-tina5v1.2-sdk/out/t113_s4_linux_100ask_uart0.img \
+cd /home/ubuntu/T113-tina5v1.2-sdk
+sudo tools/OpenixCLI/target/release/openixcli flash /home/ubuntu/T113-tina5v1.2-sdk/out/t113_s4_linux_100ask_uart0.img \
   --reconnect-timeout-sec 240 \
   --reconnect-interval-ms 300 \
   -v
@@ -193,8 +194,8 @@ efex
 
 - 保持第 8 步参数不变（已包含重连窗口）
 - 再执行一次：
-  - `sudo ./target/release/openixcli scan -l`
-  - `sudo ./target/release/openixcli flash ... -v`
+  - `sudo tools/OpenixCLI/target/release/openixcli scan -l`
+  - `sudo tools/OpenixCLI/target/release/openixcli flash ... -v`
 
 ### C. 出现 `cbw signature ... bad`
 
